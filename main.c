@@ -6,7 +6,7 @@
 /*   By: doji <doji@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 22:49:28 by doji              #+#    #+#             */
-/*   Updated: 2024/03/24 14:37:46 by doji             ###   ########.fr       */
+/*   Updated: 2024/03/24 16:07:49 by doji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main(void)
 	while (s = get_next_line(fd))
 	{
 		printf("%s", s);
+		printf("dd\n");
 		free(s);
 	}
 	return (0);

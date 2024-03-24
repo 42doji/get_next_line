@@ -6,7 +6,7 @@
 /*   By: doji <doji@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:25:20 by doji              #+#    #+#             */
-/*   Updated: 2024/03/24 14:40:06 by doji             ###   ########.fr       */
+/*   Updated: 2024/03/24 16:23:15 by doji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	_lcat(char *dst, char *src, int size)
 	return (i + j);
 }
 
-void	ft_memmove(char *dst, char *src, int size)
+void	_mmove(char *dst, char *src, int size)
 {
 	int	i;
 
@@ -59,13 +59,12 @@ char	*_rem_check(char **rem, char *line)
 {
 	int	n_idx;
 
-	n_idx = 0;
 	n_idx = _chr(*rem, '\n');
 	if ((n_idx) >= 0)
 	{
 		line = _dup(*rem);
 		line[n_idx + 1] = '\0';
-		ft_memmove(*rem, *rem + n_idx + 1, _len(*rem + n_idx + 1) + 1);
+		_mmove(*rem, *rem + n_idx + 1, _len(*rem + n_idx + 1) + 1);
 		return (line);
 	}
 	if (*rem && **rem)
@@ -79,28 +78,28 @@ char	*_rem_check(char **rem, char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*rem;               
+	static char	*rem[1024];
 	char		*line;
 	char		buf[BUFFER_SIZE + 1];
 	int			ret;
-	int			n_idx;
+	int			idx;
 
 	line = NULL;
 	ret = read(fd, buf, BUFFER_SIZE);
 	while ((ret > 0))
 	{	
 		buf[ret] = '\0';
-		rem = _join_free(&rem, buf);
-		n_idx = _chr(rem, '\n');
-		if ((n_idx) >= 0)
+		rem[fd] = _join_free(&rem[fd], buf);
+		idx = _chr(rem[fd], '\n');
+		if ((idx) >= 0)
 		{
-			line = _dup(rem);
-			line[n_idx + 1] = '\0';
-			ft_memmove(rem, rem + n_idx + 1, _len(rem + n_idx + 1) + 1);
+			line = _dup(rem[fd]);
+			line[idx + 1] = '\0';
+			_mmove(rem[fd], rem[fd] + idx + 1, _len(rem[fd] + idx + 1) + 1);
 			return (line);
 		}
 		ret = read(fd, buf, BUFFER_SIZE);
 	}
-	line = _rem_check(&rem, line);
+	line = _rem_check(&rem[fd], line);
 	return (line);
 }
