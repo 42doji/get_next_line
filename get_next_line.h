@@ -6,7 +6,7 @@
 /*   By: doji <doji@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 20:54:20 by doji              #+#    #+#             */
-/*   Updated: 2024/03/24 16:01:50 by doji             ###   ########.fr       */
+/*   Updated: 2024/03/24 19:38:18 by doji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 20 
 # endif
 
 char	*get_next_line(int fd);

@@ -6,12 +6,11 @@
 /*   By: doji <doji@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:25:20 by doji              #+#    #+#             */
-/*   Updated: 2024/03/24 16:23:15 by doji             ###   ########.fr       */
+/*   Updated: 2024/03/24 20:14:11 by doji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 int	_lcat(char *dst, char *src, int size)
 {
@@ -100,6 +99,8 @@ char	*get_next_line(int fd)
 		}
 		ret = read(fd, buf, BUFFER_SIZE);
 	}
+	if (ret < 0)
+		return (NULL);
 	line = _rem_check(&rem[fd], line);
 	return (line);
 }
