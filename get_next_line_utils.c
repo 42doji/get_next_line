@@ -6,7 +6,7 @@
 /*   By: doji <doji@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 21:32:27 by doji              #+#    #+#             */
-/*   Updated: 2024/04/13 14:40:04 by doji             ###   ########.fr       */
+/*   Updated: 2024/04/13 18:19:53 by doji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ char	*_join_free(char **s1, char *s2)
 {
 	char	*new_str;
 
-	if (!s1 || !s2)
-		return (NULL);
 	new_str = malloc(_len(*s1) + _len(s2) + 1);
 	if (!new_str)
 		return (NULL);
@@ -82,6 +80,5 @@ char	*_join_free(char **s1, char *s2)
 		free(*s1);
 		*s1 = NULL;
 	}
-	*s1 = new_str;
-	return (*s1);
+	return (new_str);
 }

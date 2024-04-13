@@ -6,7 +6,7 @@
 /*   By: doji <doji@student.42gyeongsan.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 15:25:20 by doji              #+#    #+#             */
-/*   Updated: 2024/04/13 14:39:48 by doji             ###   ########.fr       */
+/*   Updated: 2024/04/13 18:19:36 by doji             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,15 @@ char	*_rem_check(char **rem, char *line)
 		line = _dup(*rem);
 		line[n_idx + 1] = '\0';
 		_mmove(*rem, *rem + n_idx + 1, _len(*rem + n_idx + 1) + 1);
-		return (line);
 	}
-	if (*rem)
+	else if (*rem)
 	{
-		line = _dup(*rem);
+		if (**rem)
+			line = _dup(*rem);
 		free(*rem);
 		*rem = NULL;
-		return (line);
 	}
-	return (NULL);
+	return (line);
 }
 
 char	*_return_line(int idx, int fd, char **rem)
